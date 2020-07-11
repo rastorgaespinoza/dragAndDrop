@@ -9,10 +9,14 @@
 import UIKit
 
 class NumberCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet var numberLabel: UILabel!
+    @IBOutlet weak var backgroundViewBorder: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundViewBorder.layer.borderColor = UIColor.black.cgColor
+        backgroundViewBorder.layer.cornerRadius = 5.0
+        backgroundViewBorder.layer.borderWidth = 2.0
     }
 
 }

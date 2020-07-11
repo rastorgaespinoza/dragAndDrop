@@ -19,6 +19,14 @@ class ShiftingCollectionDataSource: NSObject {
     func number(at index: Int) -> Int? {
         return dataOrganizer[index]
     }
+    
+    func isOrdered() {
+        // TODO: agregar validación para saber si el array está ordenado
+    }
+    
+    func shuffle() {
+        // TODO: cambia el orden del array
+    }
 }
 
 private extension ShiftingCollectionDataSource {
