@@ -24,12 +24,16 @@ class ShiftingCollectionDataSource: NSObject {
         return dataOrganizer[index]
     }
     
-    func isOrdered() {
-        // TODO: agregar validación para saber si el array está ordenado
+    func isOrdered() -> Bool {
+        let sortedArray = dataOrganizer.items.sorted(by: <)
+        return sortedArray == dataOrganizer.items
     }
     
     func shuffle() {
-        // TODO: cambia el orden del array
+        if isOrdered() {
+            dataOrganizer.items.shuffle()
+            shuffle()
+        }
     }
     
     func remove(at indexPath: IndexPath) {
@@ -37,7 +41,6 @@ class ShiftingCollectionDataSource: NSObject {
     }
     
     func insert(value: Int, at indexPath: IndexPath) {
-//        let valueInt = Int(value) ?? 0
         dataOrganizer.insert(value, at: indexPath.item)
     }
 }

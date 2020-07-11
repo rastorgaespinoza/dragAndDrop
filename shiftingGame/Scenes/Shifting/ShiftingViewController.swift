@@ -11,8 +11,6 @@ import UIKit
 class ShiftingViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let heightCell: CGFloat = 50.0
-    private let widthCell: CGFloat = 50.0
     private let inset: CGFloat = 10
     private let minimumLineSpacing: CGFloat = 10
     private let minimumInteritemSpacing: CGFloat = 10
@@ -40,6 +38,7 @@ extension ShiftingViewController {
         let longitudeArray = matrixNumber * matrixNumber
         let array = Array(1...longitudeArray)
         dataSource = ShiftingCollectionDataSource(with: array)
+        dataSource?.shuffle()
         collectionView.reloadData()
     }
 }
@@ -170,9 +169,26 @@ extension ShiftingViewController: UICollectionViewDragDelegate, UICollectionView
                 dataSource?.insert(value: item.dragItem.localObject as! Int, at: dIndexPath)
                 collectionView.deleteItems(at: [sourceIndexPath])
                 collectionView.insertItems(at: [dIndexPath])
+                let isOrdered = dataSource?.isOrdered() ?? false
+                if isOrdered {
+                    showAlert()
+                }
             })
             coordinator.drop(items.first!.dragItem, toItemAt: dIndexPath)
         }
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "You Won!",
+            message: "The numbers are ordered",
+            preferredStyle: .alert
+        )
+        
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
+        
     }
 }
 
