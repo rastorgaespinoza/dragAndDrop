@@ -15,6 +15,10 @@ class ShiftingCollectionDataSource: NSObject {
         dataOrganizer = DataOrganizer(items: numbers)
         super.init()
     }
+    
+    func allNumbers() -> [Int]{
+        return dataOrganizer.items
+    }
 
     func number(at index: Int) -> Int? {
         return dataOrganizer[index]
@@ -26,6 +30,15 @@ class ShiftingCollectionDataSource: NSObject {
     
     func shuffle() {
         // TODO: cambia el orden del array
+    }
+    
+    func remove(at indexPath: IndexPath) {
+        dataOrganizer.remove(at: indexPath.item)
+    }
+    
+    func insert(value: Int, at indexPath: IndexPath) {
+//        let valueInt = Int(value) ?? 0
+        dataOrganizer.insert(value, at: indexPath.item)
     }
 }
 
@@ -42,6 +55,14 @@ private extension ShiftingCollectionDataSource {
                 return nil
             }
             return items[index]
+        }
+        
+        mutating func remove(at index: Int) {
+            items.remove(at: index)
+        }
+        
+        mutating func insert(_ value: Int, at index: Int) {
+            items.insert(value, at: index)
         }
     }
 }
