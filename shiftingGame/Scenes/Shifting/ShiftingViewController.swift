@@ -81,7 +81,7 @@ extension ShiftingViewController {
 }
 
 // MARK: - CollectionView Delegate
-
+// extract from: https://stackoverflow.com/questions/14674986/uicollectionview-set-number-of-columns
 extension ShiftingViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(
         _ collectionView: UICollectionView,
@@ -222,8 +222,13 @@ extension ShiftingViewController: UICollectionViewDragDelegate, UICollectionView
             preferredStyle: .alert
         )
         
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(alertAction)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { [weak self] (UIAlertAction) in
+            self?.showInputSize()
+        })
+            
+        alert.addAction(okAction)
+        alert.addAction(retryAction)
         present(alert, animated: true, completion: nil)
         
     }
