@@ -10,13 +10,14 @@ import UIKit
 
 class ShiftingViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    var submitInputAction = UIAlertAction()
     
     private let inset: CGFloat = 10
     private let minimumLineSpacing: CGFloat = 10
     private let minimumInteritemSpacing: CGFloat = 10
     private let cellsPerRow = 3
     
-    private let matrixNumber = 3
+    private var matrixNumber = 3
     
     private var dataSource: ShiftingCollectionDataSource? {
         didSet {
@@ -26,6 +27,7 @@ class ShiftingViewController: UIViewController {
 }
 
 // MARK: - Life Cycle
+
 extension ShiftingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +37,48 @@ extension ShiftingViewController {
         collectionView.dropDelegate = self
         collectionView.dragInteractionEnabled = true
         
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showInputSize()
+    }
+}
+
+extension ShiftingViewController {
+    
+    private func setupCollectionView(sizeOfMatrix: Int) {
+        matrixNumber = sizeOfMatrix
         let longitudeArray = matrixNumber * matrixNumber
         let array = Array(1...longitudeArray)
         dataSource = ShiftingCollectionDataSource(with: array)
         dataSource?.shuffle()
         collectionView.reloadData()
+    }
+    private func showInputSize() {
+        let alertController = UIAlertController(
+            title: "Enter size of the grid",
+            message: "",
+            preferredStyle: .alert
+        )
+
+        alertController.addTextField { [weak self] (textField : UITextField!) -> Void in
+            textField.placeholder = "example: 3"
+            textField.delegate = self
+        }
+
+        submitInputAction = UIAlertAction(title: "Save", style: .default, handler: { [weak self] alert -> Void in
+            (alertController.textFields?.first)?.text.map { text in
+                let textInt = Int(text) ?? 0
+                self?.setupCollectionView(sizeOfMatrix: textInt)
+            }
+        })
+        submitInputAction.isEnabled = false
+
+        alertController.addAction(submitInputAction)
+
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -143,7 +182,7 @@ extension ShiftingViewController: UICollectionViewDragDelegate, UICollectionView
     }
     
     //MARK: Private Methods
-    
+    /// extract from: https://hackernoon.com/drag-it-drop-it-in-collection-table-ios-11-6bd28795b313
     /// This method moves a cell from source indexPath to destination indexPath within the same collection view. It works for only 1 item. If multiple items selected, no reordering happens.
     ///
     /// - Parameters:
@@ -189,6 +228,17 @@ extension ShiftingViewController: UICollectionViewDragDelegate, UICollectionView
         alert.addAction(alertAction)
         present(alert, animated: true, completion: nil)
         
+    }
+}
+
+extension ShiftingViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string), !text.isEmpty {
+            submitInputAction.isEnabled = true
+        } else {
+            submitInputAction.isEnabled = false
+        }
+        return true
     }
 }
 
