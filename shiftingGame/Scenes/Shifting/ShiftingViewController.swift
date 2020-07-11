@@ -10,13 +10,19 @@ import UIKit
 
 class ShiftingViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scoreLabel: UILabel!
     var submitInputAction = UIAlertAction()
-    
+
     private let inset: CGFloat = 10
     private let minimumLineSpacing: CGFloat = 10
     private let minimumInteritemSpacing: CGFloat = 10
     private var cellsPerRow = 3
     
+    private var score = 0 {
+        didSet {
+            scoreLabel.text = "\(score)"
+        }
+    }
     private var dataSource: ShiftingCollectionDataSource? {
         didSet {
             collectionView.dataSource = dataSource
@@ -34,8 +40,6 @@ extension ShiftingViewController {
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
         collectionView.dragInteractionEnabled = true
-        
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -226,7 +230,8 @@ extension ShiftingViewController: UICollectionViewDragDelegate, UICollectionView
         let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { [weak self] (UIAlertAction) in
             self?.showInputSize()
         })
-            
+        
+        score += 1
         alert.addAction(okAction)
         alert.addAction(retryAction)
         present(alert, animated: true, completion: nil)
