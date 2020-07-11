@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		FB2BD0D224BA02B5006617A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BD0D124BA02B5006617A7 /* AppDelegate.swift */; };
 		FB2BD0D424BA02B5006617A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BD0D324BA02B5006617A7 /* SceneDelegate.swift */; };
-		FB2BD0D624BA02B5006617A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BD0D524BA02B5006617A7 /* ViewController.swift */; };
+		FB2BD0D624BA02B5006617A7 /* ShiftingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BD0D524BA02B5006617A7 /* ShiftingViewController.swift */; };
 		FB2BD0D924BA02B5006617A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB2BD0D724BA02B5006617A7 /* Main.storyboard */; };
 		FB2BD0DB24BA02B6006617A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB2BD0DA24BA02B6006617A7 /* Assets.xcassets */; };
 		FB2BD0DE24BA02B6006617A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB2BD0DC24BA02B6006617A7 /* LaunchScreen.storyboard */; };
+		FB2BD0E824BA0379006617A7 /* ShiftingCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BD0E724BA0379006617A7 /* ShiftingCollectionDataSource.swift */; };
+		FBDDCE4424BA08AA004B283D /* NumberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDDCE4224BA08AA004B283D /* NumberCollectionViewCell.swift */; };
+		FBDDCE4524BA08AA004B283D /* NumberCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDDCE4324BA08AA004B283D /* NumberCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FB2BD0CE24BA02B5006617A7 /* shiftingGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shiftingGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2BD0D124BA02B5006617A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB2BD0D324BA02B5006617A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FB2BD0D524BA02B5006617A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FB2BD0D524BA02B5006617A7 /* ShiftingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftingViewController.swift; sourceTree = "<group>"; };
 		FB2BD0D824BA02B5006617A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB2BD0DA24BA02B6006617A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB2BD0DD24BA02B6006617A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB2BD0DF24BA02B6006617A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB2BD0E724BA0379006617A7 /* ShiftingCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftingCollectionDataSource.swift; sourceTree = "<group>"; };
+		FBDDCE4224BA08AA004B283D /* NumberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCollectionViewCell.swift; sourceTree = "<group>"; };
+		FBDDCE4324BA08AA004B283D /* NumberCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,42 @@
 		FB2BD0D024BA02B5006617A7 /* shiftingGame */ = {
 			isa = PBXGroup;
 			children = (
+				FB2BD0E524BA034F006617A7 /* Scenes */,
 				FB2BD0D124BA02B5006617A7 /* AppDelegate.swift */,
 				FB2BD0D324BA02B5006617A7 /* SceneDelegate.swift */,
-				FB2BD0D524BA02B5006617A7 /* ViewController.swift */,
 				FB2BD0D724BA02B5006617A7 /* Main.storyboard */,
 				FB2BD0DA24BA02B6006617A7 /* Assets.xcassets */,
 				FB2BD0DC24BA02B6006617A7 /* LaunchScreen.storyboard */,
 				FB2BD0DF24BA02B6006617A7 /* Info.plist */,
 			);
 			path = shiftingGame;
+			sourceTree = "<group>";
+		};
+		FB2BD0E524BA034F006617A7 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				FB2BD0E624BA035E006617A7 /* Shifting */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		FB2BD0E624BA035E006617A7 /* Shifting */ = {
+			isa = PBXGroup;
+			children = (
+				FBDDCE4624BA08AF004B283D /* Cells */,
+				FB2BD0D524BA02B5006617A7 /* ShiftingViewController.swift */,
+				FB2BD0E724BA0379006617A7 /* ShiftingCollectionDataSource.swift */,
+			);
+			path = Shifting;
+			sourceTree = "<group>";
+		};
+		FBDDCE4624BA08AF004B283D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBDDCE4224BA08AA004B283D /* NumberCollectionViewCell.swift */,
+				FBDDCE4324BA08AA004B283D /* NumberCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB2BD0DE24BA02B6006617A7 /* LaunchScreen.storyboard in Resources */,
+				FBDDCE4524BA08AA004B283D /* NumberCollectionViewCell.xib in Resources */,
 				FB2BD0DB24BA02B6006617A7 /* Assets.xcassets in Resources */,
 				FB2BD0D924BA02B5006617A7 /* Main.storyboard in Resources */,
 			);
@@ -138,7 +172,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB2BD0D624BA02B5006617A7 /* ViewController.swift in Sources */,
+				FBDDCE4424BA08AA004B283D /* NumberCollectionViewCell.swift in Sources */,
+				FB2BD0E824BA0379006617A7 /* ShiftingCollectionDataSource.swift in Sources */,
+				FB2BD0D624BA02B5006617A7 /* ShiftingViewController.swift in Sources */,
 				FB2BD0D224BA02B5006617A7 /* AppDelegate.swift in Sources */,
 				FB2BD0D424BA02B5006617A7 /* SceneDelegate.swift in Sources */,
 			);
