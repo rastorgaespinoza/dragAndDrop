@@ -15,9 +15,7 @@ class ShiftingViewController: UIViewController {
     private let inset: CGFloat = 10
     private let minimumLineSpacing: CGFloat = 10
     private let minimumInteritemSpacing: CGFloat = 10
-    private let cellsPerRow = 3
-    
-    private var matrixNumber = 3
+    private var cellsPerRow = 3
     
     private var dataSource: ShiftingCollectionDataSource? {
         didSet {
@@ -49,8 +47,8 @@ extension ShiftingViewController {
 extension ShiftingViewController {
     
     private func setupCollectionView(sizeOfMatrix: Int) {
-        matrixNumber = sizeOfMatrix
-        let longitudeArray = matrixNumber * matrixNumber
+        cellsPerRow = sizeOfMatrix
+        let longitudeArray = cellsPerRow * cellsPerRow
         let array = Array(1...longitudeArray)
         dataSource = ShiftingCollectionDataSource(with: array)
         dataSource?.shuffle()
